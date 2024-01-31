@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Add custom styles for the navigation bar and search bar */
+
+    .navbar {
+      background-color: #2bbe2b67;
+      color: #050505;
+      padding: 20px;
+    }
+
+
+    .navbar-header
+    .navbar-brand{
+      font-size: 35px;
+      color: #102ed8;
+    }
+    .navbar a {
+      color: #080808;
+    }
+    .navbar .navbar-right {
+      float: right;
+      padding-right: 20px;
+    }
+    /* Add custom styles for the main content */
+    .main-content {
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+  <style>
+    .left-aligned-text {
+      text-align: left;
+    }
+  </style>
+</head>
+<body >
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+       <h4> <a class="navbar-brand" href="/">SwaggyStore</a></h4>
+      </div>
+      <h4><ul class="nav navbar-nav">
+        <li><a href="/" style="color: #102ed8;">Home</a></li>
+
+      </ul></h4>
+    </nav>
+    </body>
+</html>
+<div class="container">
+    <div class="row">
+      <% for(var i=0; i < items.length; i++) { %>
+        <% if (i % 3 === 0) { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } else if (i % 3 === 1) { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } else { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } %>
+          <div class="card">
+            <style>
+              .product-image {
+                 width: 300px;
+                 height: 300px;
+              }
+           </style>
+           <form action="/login" >
+            <br>
+            <img class="product-image" src="<%= '/images/imageDB/' + items[i].Image %>" alt="product image">
+            <div class="card-body">
+              <h5 class="card-title"><%= items[i].ProductName %></h5>
+              <p class="card-text">Price: <%= items[i].ProductPrice %></p>
+              <button class="add-to-cart-button" name="ProductID" value="<%= items[i].ProductID %>">Add to Cart</button>
+              <style>
+                .add-to-cart-button {
+                  padding: 10px 20px;
+                  background-color: #00ff00c9;
+                  color: #000000;;
+                  border-color:#7fff00;
+                  border-radius: 5px;
+                  cursor: pointer;
+                }
+              </style>
+            </div>
+          </form>        
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  

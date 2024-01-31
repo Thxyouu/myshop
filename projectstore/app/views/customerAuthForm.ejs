@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Add custom styles for the navigation bar and search bar */
+  
+    .navbar-brand{
+      font-size: 25px;
+    }
+    .navbar {
+      background-color: #2bbe2b67; /* Set the background color to the same blue color as the background above main content */
+      color: #070707;
+      padding: 20px;
+      margin: 0; /* Add margin 0 to remove default margin */
+    }
+    .navbar a {
+      color: #060606;
+    }
+    .navbar .navbar-right {
+      float: right;
+      padding-right: 20px;
+    }
+    /* Add custom styles for the main content */
+    .main-content {
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+  <style>
+    .left-aligned-text {
+      text-align: left;
+    }
+  </style>
+</head>
+<body >
+  <!-- Navigation bar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h4><a class="navbar-brand" href="/" style="color: #102ed8;">Home</a></h4>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="/"> </a></li>
+      </ul>
+      <div class="navbar-right">
+        <div class="left-aligned-text">  
+            <form id="cart-form" action="/orders" method="get">
+                <h4><span>ยินดีต้อนรับลูกค้า</span></h4>
+                <a href="/" class="btn btn-success">Logout</a>
+                <button type="submit" class="btn btn-info" onclick="viewCart()">Shopping Cart <span id="cart-count">0</span></button>
+                <input type="hidden" name="productIDs" id="productIDs" value="">
+                <input type="hidden" name="customerID" id="customerID" value="<%= customerID %>">
+                <input type="hidden" name="quantity" id="quantity" value="1">
+              </form>
+
+             <script>
+    var shoppingCart = [];
+
+    function addToCart(productId, productName, productPrice) {
+      var isItemInCart = false;
+      for (var i = 0; i < shoppingCart.length; i++) {
+        if (shoppingCart[i].productId === productId) {
+          isItemInCart = true;
+          break;
+        }
+      }
+
+      if (!isItemInCart) {
+        shoppingCart.push({
+          productId: productId,
+          productName: productName,
+          productPrice: productPrice
+        });
+
+        updateCartCount();
+        updateProductIDsInput(); // Call a new function to update the hidden input field
+      }
+    }
+
+    function updateCartCount() {
+      var cartCount = document.getElementById('cart-count');
+      cartCount.textContent = shoppingCart.length;
+    }
+
+    function viewCart() {
+      // You can implement your logic here to display the shopping cart items to the user.
+      // For example, you could create a modal or redirect the user to a new page.
+      console.log(shoppingCart);
+    }
+
+    function updateProductIDsInput() {
+      // Get the hidden input field
+      var productIDsInput = document.getElementById('productIDs');
+
+      // Get an array of product IDs from the shoppingCart array
+      var productIDsArray = shoppingCart.map(item => item.productId);
+
+      // Set the value of the hidden input field with a comma-separated list of product IDs
+      productIDsInput.value = productIDsArray.join(',');
+    }
+  </script>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <% for(var i=0; i < items.length; i++) { %>
+        <% if (i % 3 === 0) { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } else if (i % 3 === 1) { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } else { %>
+          <div class="col-md-4 mx-auto text-center">
+        <% } %>
+          <div class="card">
+            <style>
+              .product-image {
+                width: 300px;
+                height: 300px;
+              }
+            </style>
+            <br>
+            <img class="product-image" src="<%= '/images/imageDB/' + items[i].Image %>" alt="product image">
+            <div class="card-body">
+              <h5 class="card-title"><%= items[i].ProductName %></h5>
+              <p class="card-text">Price: <%= items[i].ProductPrice %></p>
+              <p class="card-text">Stock: <%= items[i].UnitsInStock %></p>
+              <button class="add-to-cart-button" onclick="addToCart('<%= items[i].ProductID %>', '<%= items[i].ProductName %>','<%= items[i].ProductPrice %>' );">Add to Cart</button>
+              <style>
+                .add-to-cart-button {
+                  padding: 10px 20px;
+                  background-color: #00ff00c9;
+                  color: #000000; /* Change the text color back to black (#333) */
+                  border-color:#7fff00;
+                  border-radius: 5px;
+                  cursor: pointer;
+                }
+              </style>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwaggyStore</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+  </head>
+  <body>
+    <main>
+      <!-- Header Start -->
+      <header>
+        <nav class="nav container">
+          <h2 class="nav_logo"><a href="#">SwaggyStore</a></h2>
+
+          <ul class="menu_items">
+            <img src="images/close.jpg" alt="timesicon" id="menu_toggle" />
+            <li><a href="/" class="nav_link">Home</a></li>
+            <li><a href="/customers_auth/productsForm" class="nav_link">Product</a></li>
+            <li><a href="/service" class="nav_link">Service</a></li>
+            <li><a href="/contact" class="nav_link">Contact</a></li>
+            <li><a href="/customers_auth/productsForm" class="nav_link">Shopping Cart</a></li>
+            <li><a href="/login" class="btn">Login</a></li>
+          </ul>
+          <img src="images/menubar.png" alt="timesicon" id="menu_toggle" />
+        </nav>
+      </header>
+      <!-- Header End -->
+
+      <!-- Hero Start -->
+      <section class="hero">
+        <p style=" position: relative; text-align:center; top: 10%; color: aliceblue; font-size:35px;"> Contact Us</p>
+        <p style=" position: relative; text-align:center; top: 15%; color: aliceblue; font-size:30px;">เวลาทำการจันทร์-ศุกร์ เวลา 9.00-17.00</p>
+        <a href="https://www.facebook.com/profile.php?id=61550286583249&mibextid=b06tZ0" ><img src="../images/Facebook.png" alt="image" class="fb"></a>
+        <a href="https://instagram.com/swg.swaggystore?igshid=OGQ5ZDc2ODk2ZA==" ><img src="../images/ig.png" alt="image" class="ig" ></a>
+      </section>
+      <!-- Hero End-->
+    </main>
+
+    <script>
+      const header = document.querySelector("header");
+      const menuToggler = document.querySelectorAll("#menu_toggle");
+
+      menuToggler.forEach(toggler => {
+        toggler.addEventListener("click", () => header.classList.toggle("showMenu"));
+      });
+    </script>
+  </body>
+</html>
+
+  
+  </body>
+</html>
